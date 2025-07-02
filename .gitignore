@@ -1,3 +1,8 @@
 InternVideo
+!InternVideo/.gitkeep
+
 datasets/ActivityNet/*
+!datasets/ActivityNet/.gitkeep
+
 datasets/Charades/*
+!datasets/Charades/.gitkeep
