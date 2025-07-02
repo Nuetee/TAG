@@ -1,4 +1,4 @@
-# Training-free Zero-Shot Video Temporal Grounding using Large-scale Pre-trained Models
+# TAG: A Simple Yet Effective Temporal-Aware Approach for Zero-Shot Video Temporal Grounding
 
 In this work, 
 
@@ -34,8 +34,8 @@ python evaluate.py --dataset activitynet --llm_output dataset/activitynet/llm_ou
 
 | Dataset        | IoU=0.3 | IoU=0.5 | IoU=0.7 |  mIoU   |
 | :-----         | :-----: | :-----: | :-----: | :-----: |
-|  Charades-STA  |    |    |    |    |
-|  ActivityNet   |    |    |    |    |
+|  Charades-STA  |  67.82  |  48.58  |  26.67  |  45.69  |
+|  ActivityNet   |  51.88  |  28.91  |  15.07  |  36.55  |
 
 
 ### OOD Splits
@@ -56,10 +56,10 @@ python evaluate.py --dataset activitynet --split OOD-2
 
 | Dataset              | IoU=0.3 | IoU=0.5 | IoU=0.7 |  mIoU   |
 | :-----               | :-----: | :-----: | :-----: | :-----: |
-|  Charades-STA OOD-1  |  66.05  |  45.91  |  20.78  |  43.05  |
-|  Charades-STA OOD-2  |  65.75  |  43.79  |  19.95  |  42.62  |
-|  ActivityNet OOD-1   |  43.87  |  20.41  |  11.25  |  31.72  |
-|  ActivityNet OOD-2   |  40.97  |  18.54  |  10.03  |  30.33  |
+|  Charades-STA OOD-1  |  68.25  |  45.27  |  23.20  |  44.71  |
+|  Charades-STA OOD-2  |  68.31  |  44.11  |  21.99  |  44.62  |
+|  ActivityNet OOD-1   |  51.42  |  28.52  |  14.68  |  36.19  |
+|  ActivityNet OOD-2   |  51.23  |  28.34  |  14.54  |  36.05  |
 
 
 ```bash
@@ -75,6 +75,11 @@ python evaluate.py --dataset charades --split novel-word
 
 | Dataset                           | IoU=0.3 | IoU=0.5 | IoU=0.7 |  mIoU   |
 | :-----                            | :-----: | :-----: | :-----: | :-----: |
-|  Charades-STA test-ood            |    |    |    |    |
-|  Charades-STA novel-composition   |    |    |    |    |
-|  Charades-STA novel-word          |    |    |    |    |
+|  Charades-STA test-ood            |  68.09  |  49.45  |  26.58  |  45.97  |
+|  Charades-STA novel-composition   |  64.38  |  43.55  |  21.30  |  41.95  |
+|  Charades-STA novel-word          |  68.49  |  52.37  |  32.66  |  47.86  |
+
+
+## Acknowledgement
+
+This repository is built upon the official implementation of [TFVTG (ECCV 2024)](https://github.com/minghangz/TFVTG). We thank the authors for their valuable contributions and open-source code.
