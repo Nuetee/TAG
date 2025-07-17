@@ -21,6 +21,40 @@ In this work, 설명
 
 internvideo 내용
 
+## Data Preparation
+
+Before training or evaluation, please prepare the datasets and extract visual features as follows.
+
+### 1. Download Datasets
+
+#### Charades-STA
+- Download the Charades video dataset from the [Charades Project Page](https://prior.allenai.org/projects/charades).
+- Extract the videos into your desired directory, e.g.: datasets/Charades/Charades_v1_480/
+
+
+#### ActivityNet Captions
+- Visit the [ActivityNet Download Page](http://activity-net.org/download.html).
+- Submit a dataset request to gain access.
+- After approval, download the video and caption files as instructed, and organize them as: datasets/ActivityNet/videos/
+
+
+---
+
+### 2. Extract Visual Features
+
+We use the BLIP-2 image-text matching model (pretrained on COCO) to extract visual features at **3 FPS**.
+
+For Charades-STA:
+python feature_extraction.py \
+  --input_root datasets/Charades/Charades_v1_480/ \
+  --save_root datasets/Charades/blip2_coco_features/
+
+For ActivityNet:
+python feature_extraction.py \
+  --input_root datasets/ActivityNet/videos/ \
+  --save_root datasets/ActivityNet/blip2_coco_features/
+
+
 ## Main Results
 
 ### Standard Split
