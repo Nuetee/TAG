@@ -29,13 +29,13 @@ Before training or evaluation, please prepare the datasets and extract visual fe
 
 #### Charades-STA
 - Download the Charades video dataset from the [Charades Project Page](https://prior.allenai.org/projects/charades).
-- Extract the videos into your desired directory, e.g.: datasets/Charades/Charades_v1_480/
+- Extract the videos into your desired directory, e.g.: `videos/Charades/`
 
 
 #### ActivityNet Captions
 - Visit the [ActivityNet Download Page](http://activity-net.org/download.html) and request access to the dataset.
 - Once approved, download the video dataset from ActivityNet.
-- Extract the videos into your desired directory, e.g.: `datasets/ActivityNet/videos/`
+- Extract the videos into your desired directory, e.g.: `videos/ActivityNet/`
 
 
 ### 2. Extract Visual Features
@@ -45,15 +45,15 @@ We use the BLIP-2 image-text matching model (pretrained on COCO) to extract visu
 For Charades-STA:
 ```bash
 python feature_extraction.py \
-  --input_root datasets/Charades/Charades_v1_480/ \
-  --save_root datasets/Charades/blip2_coco_features/
+  --input_root videos/Charades/ \
+  --save_root datasets/Charades/
 ```
 
 For ActivityNet:
 ```bash
 python feature_extraction.py \
-  --input_root datasets/ActivityNet/videos/ \
-  --save_root datasets/ActivityNet/blip2_coco_features/
+  --input_root videos/ActivityNet/ \
+  --save_root datasets/ActivityNet/
 ```
 
 ## Main Results
