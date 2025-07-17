@@ -38,8 +38,6 @@ Before training or evaluation, please prepare the datasets and extract visual fe
 - Extract the videos into your desired directory, e.g.: `datasets/ActivityNet/videos/`
 
 
----
-
 ### 2. Extract Visual Features
 
 We use the BLIP-2 image-text matching model (pretrained on COCO) to extract visual features at **3 FPS**.
