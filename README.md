@@ -31,6 +31,7 @@ TAG achieves state-of-the-art performance on Charades-STA and ActivityNet Captio
 - seaborn
 - statsmodels
 - patsy
+- salesforce-lavis
 
 
 ## Data Preparation
