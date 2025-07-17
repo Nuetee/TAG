@@ -43,15 +43,18 @@ Before training or evaluation, please prepare the datasets and extract visual fe
 We use the BLIP-2 image-text matching model (pretrained on COCO) to extract visual features at **3 FPS**.
 
 For Charades-STA:
+```bash
 python feature_extraction.py \
   --input_root datasets/Charades/Charades_v1_480/ \
   --save_root datasets/Charades/blip2_coco_features/
+```
 
 For ActivityNet:
+```bash
 python feature_extraction.py \
   --input_root datasets/ActivityNet/videos/ \
   --save_root datasets/ActivityNet/blip2_coco_features/
-
+```
 
 ## Main Results
 
