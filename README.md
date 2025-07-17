@@ -33,9 +33,9 @@ Before training or evaluation, please prepare the datasets and extract visual fe
 
 
 #### ActivityNet Captions
-- Visit the [ActivityNet Download Page](http://activity-net.org/download.html).
-- Submit a dataset request to gain access.
-- After approval, download the video and caption files as instructed, and organize them as: datasets/ActivityNet/videos/
+- Visit the [ActivityNet Download Page](http://activity-net.org/download.html) and request access to the dataset.
+- Once approved, download the video dataset from ActivityNet.
+- Extract the videos into your desired directory, e.g.: `datasets/ActivityNet/videos/`
 
 
 ---
