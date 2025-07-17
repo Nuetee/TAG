@@ -6,7 +6,7 @@ It achieves state-of-the-art performance on Charades-STA and ActivityNet Caption
 ## Method Overview
 
 <div align="center">
-  <img src="figures/overview.png" alt="Method Overview" width="80%">
+  <img src="figures/overview.png" alt="Method Overview" width="90%">
 </div>
 
 ## Pipeline
