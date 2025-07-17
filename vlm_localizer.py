@@ -15,24 +15,6 @@ vis_processors = transforms.Compose([
 #### BLIP-2 Q-Former ####
 
 
-#### CLIP ####
-clip_model, preprocess = clip.load("ViT-L/14", device='cuda')
-clip_text_encoder = clip_model.encode_text
-#### CLIP ####
-
-#### InternVideo ####
-import sys
-from pathlib import Path
-# InternVideo 모듈이 있는 디렉토리를 sys.path에 추가
-module_path = Path("./InternVideo/InternVideo1/Pretrain/Multi-Modalities-Pretraining").resolve()
-if str(module_path) not in sys.path:
-    sys.path.append(str(module_path))
-
-import InternVideo
-model_internVideo = InternVideo.load_model("./InternVideo/InternVideo1/Pretrain/Multi-Modalities-Pretraining/InternVideo-MM-L-14.ckpt").cuda()
-#### InternVideo ####
-
-
 def gaussian_kernel(size, sigma=1):
     size = int(size) // 2
     x = np.arange(-size, size + 1)
@@ -355,51 +337,29 @@ def get_proposals_with_scores(scene_segments, cum_scores, frame_scores, num_fram
 
 def generate_proposal_revise(video_features, sentences, stride, hyperparams, tckmeans):
     num_frames = video_features.shape[0]
-    if hyperparams['is_clip']:
-        with torch.no_grad():
-           text_tokens = clip.tokenize(sentences).to(device='cuda')
-           text_feat = clip_text_encoder(text_tokens)
-        v1 = F.normalize(text_feat, p=2, dim=1)  # Normalize along feature dimension
-        v2 = F.normalize(torch.tensor(video_features, device='cuda', dtype=v1.dtype), p=2, dim=1)  # Normalize along feature dimension
-        scores = torch.matmul(v2, v1.T).squeeze()
-        scores = scores.unsqueeze(0)
-        video_features = torch.tensor(video_features).cuda()
-    elif hyperparams['is_internVideo']:
-        with torch.no_grad():
-            text = InternVideo.tokenize([sentences]).cuda()
-            text_feat =  model_internVideo.encode_text(text)
-            video_features = torch.tensor(video_features).cuda()
 
-            v1 = F.normalize(text_feat, dim=1)
-            v2 = torch.nn.functional.normalize(video_features, dim=1)
-            scores = (v1 @ v2.T) # (num_segments, num_texts)
-    else:
-        with torch.no_grad():
-            text = model.tokenizer(sentences, padding='max_length', truncation=True, max_length=35, return_tensors="pt").to(
-                'cuda')
-            text_output = model.Qformer.bert(text.input_ids, attention_mask=text.attention_mask, return_dict=True)
-            text_feat = model.text_proj(text_output.last_hidden_state[:, 0, :])
-        v1 = F.normalize(text_feat, dim=-1)
-        v2 = F.normalize(torch.tensor(video_features, device='cuda', dtype=v1.dtype), dim=-1)
-        scores = torch.einsum('md,npd->mnp', v1, v2)
-        scores, scores_idx = scores.max(dim=-1)
-        scores = scores.mean(dim=0, keepdim=True)
+    with torch.no_grad():
+        text = model.tokenizer(sentences, padding='max_length', truncation=True, max_length=35, return_tensors="pt").to(
+            'cuda')
+        text_output = model.Qformer.bert(text.input_ids, attention_mask=text.attention_mask, return_dict=True)
+        text_feat = model.text_proj(text_output.last_hidden_state[:, 0, :])
+    v1 = F.normalize(text_feat, dim=-1)
+    v2 = F.normalize(torch.tensor(video_features, device='cuda', dtype=v1.dtype), dim=-1)
+    scores = torch.einsum('md,npd->mnp', v1, v2)
+    scores, scores_idx = scores.max(dim=-1)
+    scores = scores.mean(dim=0, keepdim=True)
     
     # scores > 0.2인 마스킹 생성 (Boolean 형태 유지)
-    initial_masks = (scores > 0.2 if hyperparams['is_blip2'] else scores > 0)
+    initial_masks = scores > 0.2
     masks, masked_indices = scores_masking(scores, initial_masks)
 
     # Alignment adjustment of similarity scores
     data = scores[:, masks].flatten().cpu().numpy()   # 마스크된 부분만 가져오기    
     normalized_scores, is_scale = alignment_adjustment(data, hyperparams['gamma'], scores.device, lambda_max=2, lambda_min=-2)
     
-    
-    if hyperparams['is_blip2'] or hyperparams['is_blip']:
-        video_features = torch.tensor(video_features).cuda()
-        scores_idx = scores_idx.reshape(-1)
-        selected_video_features = video_features[torch.arange(num_frames), scores_idx]
-    else:
-        selected_video_features = video_features
+    video_features = torch.tensor(video_features).cuda()
+    scores_idx = scores_idx.reshape(-1)
+    selected_video_features = video_features[torch.arange(num_frames), scores_idx]
     
     ### TAP ###
     # Time Positional Encoding

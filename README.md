@@ -19,7 +19,6 @@ In this work, 설명
 - statsmodels
 - patsy
 
-internvideo 내용
 
 ## Data Preparation
 
@@ -78,16 +77,16 @@ python evaluate.py --dataset activitynet --llm_output dataset/activitynet/llm_ou
 
 ```bash
 # Charades-STA OOD-1
-python evaluate.py --dataset charades --split OOD-1
+python evaluate.py --dataset charades --split OOD-1 --tckmeans
 
 # Charades-STA OOD-2
-python evaluate.py --dataset charades --split OOD-2
+python evaluate.py --dataset charades --split OOD-2 --tckmeans
 
 # ActivityNet OOD-1
-python evaluate.py --dataset activitynet --split OOD-1
+python evaluate.py --dataset activitynet --split OOD-1 --tckmeans
 
 # ActivityNet OOD-2
-python evaluate.py --dataset activitynet --split OOD-2
+python evaluate.py --dataset activitynet --split OOD-2 --tckmeans
 ```
 
 | Dataset              | IoU=0.3 | IoU=0.5 | IoU=0.7 |  mIoU   |
@@ -100,13 +99,13 @@ python evaluate.py --dataset activitynet --split OOD-2
 
 ```bash
 # Charades-CD test-ood
-python evaluate.py --dataset charades --split test-ood
+python evaluate.py --dataset charades --split test-ood --tckmeans
 
 # Charades-CG novel-composition
-python evaluate.py --dataset charades --split novel-composition
+python evaluate.py --dataset charades --split novel-composition --tckmeans
 
 # Charades-CG novel-word
-python evaluate.py --dataset charades --split novel-word
+python evaluate.py --dataset charades --split novel-word --tckmeans
 ```
 
 | Dataset                           | IoU=0.3 | IoU=0.5 | IoU=0.7 |  mIoU   |

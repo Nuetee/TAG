@@ -11,10 +11,6 @@ DATASETS={
             "window_radius": 7,
             "prior": 0.5,
             "temporal_window_size": 21,
-            'is_clip': False,
-            'is_blip': False,
-            'is_blip2': True,
-            'is_internVideo': False
         },
         'splits': {
             'default': {
@@ -54,10 +50,6 @@ DATASETS={
             "kmeans_k": 9,
             "prior": 0.5,
             "temporal_window_size": 21,
-            'is_clip': True,
-            'is_blip': False,
-            'is_blip2': False,
-            'is_internVideo': False
         },
         'splits': {
             'default': {
@@ -97,10 +89,6 @@ DATASETS={
             "kmeans_k": 9,
             "prior": 0.5,
             "temporal_window_size": 21,
-            'is_clip': False,
-            'is_blip': True,
-            'is_blip2': False,
-            'is_internVideo': False
         },
         'splits': {
             'default': {
@@ -140,10 +128,6 @@ DATASETS={
             "kmeans_k": 9,
             "prior": 0.5,
             "temporal_window_size": 21,
-            'is_clip': False,
-            'is_blip': False,
-            'is_blip2': False,
-            'is_internVideo': True
         },
         'splits': {
             'default': {
@@ -184,10 +168,6 @@ DATASETS={
             "window_radius": 7,
             "prior": 1,
             "temporal_window_size": 21,
-            'is_clip': False,
-            'is_blip': False,
-            'is_blip2': True,
-            'is_internVideo': False
         },
         'splits': {
             'default': {
@@ -215,10 +195,6 @@ DATASETS={
             "kmeans_k": 25,
             "prior": 1,
             "temporal_window_size": 25,
-            'is_clip': False,
-            'is_blip': False,
-            'is_blip2': True,
-            'is_internVideo': False
         },
         'splits': {
             'default': {
