@@ -6,3 +6,7 @@ datasets/ActivityNet/*
 
 datasets/Charades/*
 !datasets/Charades/.gitkeep
+
+# Ensure datasets folder itself is tracked
+!datasets/
+!datasets/.gitkeep

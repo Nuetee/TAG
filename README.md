@@ -1,6 +1,6 @@
 # TAG: A Simple Yet Effective Temporal-Aware Approach for Zero-Shot Video Temporal Grounding
 
-In this work, 
+In this work, 설명
 
 ![pipeline](figures/fig9_v3.png)
 
@@ -19,6 +19,7 @@ In this work,
 - statsmodels
 - patsy
 
+internvideo 내용
 
 ## Main Results
 
