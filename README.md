@@ -1,5 +1,5 @@
 # TAG: A Simple Yet Effective Temporal-Aware Approach for Zero-Shot Video Temporal Grounding
-
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-B31B1B.svg)](https://arxiv.org/pdf/2508.07925)
 TAG is a simple yet effective temporal-aware framework for zero-shot Video Temporal Grounding (VTG).  
 By leveraging temporal pooling, temporal coherence clustering, and similarity adjustment, TAG captures contextual continuity in videos and mitigates **segment fragmentation**, where semantically consistent frames are mistakenly split across multiple segments.  
 This enables accurate localization of target moments without any training or reliance on large language models.  
